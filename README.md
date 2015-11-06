@@ -2,7 +2,7 @@ NNTargetedSentiment
 ======
 NNTargetedSentiment is a package for targeted sentiment analysis using neural networks based on package [LibN3L](https://github.com/SUTDNLP/LibN3L).  
 Targeted sentiment analysis aims to detect the sentiment polarity of a given span in a sentence. The span can be one entity or one expression.  
-Please refer to the following papers for more detailed description:
+Please refer to the following papers for more detailed description:  
 [Adaptive Recursive Neural Network for Target-dependent Twitter Sentiment Classification](http://www.aclweb.org/anthology/P/P14/P14-2009.pdf)  
 [Target-dependent Twitter Sentiment Classification with Rich Automatic Features](http://people.sutd.edu.sg/~yue_zhang/pub/ijcai15.tin.pdf)  
 [SemEval-2013 Task 2: Sentiment Analysis in Twitter](http://www.aclweb.org/anthology/S/S13/S13-2052.pdf)  
