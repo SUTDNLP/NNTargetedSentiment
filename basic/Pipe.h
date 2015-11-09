@@ -11,6 +11,7 @@
 #include "InstanceReader.h"
 #include "InstanceWriter.h"
 #include <iterator>
+#include "N3L.h"
 
 using namespace std;
 
@@ -90,7 +91,7 @@ public:
 
     while (pInstance) {
 
-      if (pInstance->size() < 300) {
+      if (pInstance->size() < 300 && checkLabel(pInstance->labels)) {
         Instance trainInstance;
         trainInstance.copyValuesFrom(*pInstance);
         vecInstances.push_back(trainInstance);
@@ -109,6 +110,33 @@ public:
 
     cout << endl;
     cout << "instance num: " << numInstance << endl;
+  }
+
+  bool checkLabel(const vector<string>& labels) {
+    hash_set<string> targets;
+    static int idx, idy, endpos;
+    idx = 0;
+    while (idx < labels.size()) {
+      if (is_start_label(labels[idx])) {
+        idy = idx;
+        endpos = -1;
+        while (idy < labels.size()) {
+          if (!is_continue_label(labels[idy], labels[idx], idy - idx)) {
+            endpos = idy - 1;
+            break;
+          }
+          endpos = idy;
+          idy++;
+        }
+        stringstream ss;
+        ss << "[" << idx << "," << endpos << "]";
+        targets.insert(cleanLabel(labels[idx]) + ss.str());
+        idx = endpos;
+      }
+      idx++;
+    }
+
+    return (targets.size() == 1);
   }
 
 protected:
